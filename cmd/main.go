@@ -3,49 +3,46 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
+
+	"github.com/sandronister/fast-bolierplate-go/internals/cli"
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Please input package name")
+	if len(os.Args) < 3 {
+		fmt.Println("Please input folder name and package name")
 		return
 	}
 
-	packageName := os.Args[1]
-	cmd := exec.Command("go", "mod", "init", packageName)
-	cmd.Stdout = os.Stdout
+	client := cli.NewService(os.Args[1])
 
-	err := cmd.Run()
+	err := client.CreateInitialFolder()
 	if err != nil {
 		fmt.Println("Error: ", err)
+		return
 	}
 
-	principals := []string{"internal", "pkg", "cmd", "config"}
-
-	for _, principal := range principals {
-		err := os.Mkdir(principal, 0755)
-		if err != nil {
-			fmt.Println("Error: ", err)
-		}
+	err = client.CreatePackage()
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
 	}
 
-	internals := []string{"internal/entity", "internal/repository", "internal/infra", "internal/usecase"}
-
-	for _, internal := range internals {
-		err := os.MkdirAll(internal, 0755)
-		if err != nil {
-			fmt.Println("Error: ", err)
-		}
+	err = client.CreatePrincipals()
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
 	}
 
-	infra := []string{"internal/infra/database", "internal/infra/web", "internal/infra/handler"}
+	err = client.CreateInternal()
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 
-	for _, inf := range infra {
-		err := os.MkdirAll(inf, 0755)
-		if err != nil {
-			fmt.Println("Error: ", err)
-		}
+	err = client.CreateInfra()
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
 	}
 
 }
