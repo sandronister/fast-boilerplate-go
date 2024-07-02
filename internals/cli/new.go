@@ -1,9 +1,10 @@
 package cli
 
 type service struct {
-	folder string
+	folder      string
+	packageName string
 }
 
-func NewService(folder string) *service {
-	return &service{folder: folder}
+func NewService(folder string, packageName string) *service {
+	return &service{folder: folder, packageName: packageName}
 }

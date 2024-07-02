@@ -7,7 +7,7 @@ import (
 
 func (s *service) CreatePackage() error {
 	os.Chdir(s.folder)
-	cmd := exec.Command("go", "mod", "init", s.folder)
+	cmd := exec.Command("go", "mod", "init", s.packageName)
 	cmd.Stdout = os.Stdout
 
 	err := cmd.Run()

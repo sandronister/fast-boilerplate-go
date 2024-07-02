@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-	client := cli.NewService(os.Args[1])
+	client := cli.NewService(os.Args[1], os.Args[2])
 
 	err := client.CreateInitialFolder()
 	utils.Catch(&err)
