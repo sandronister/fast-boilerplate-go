@@ -39,7 +39,7 @@ func main() {
 		}
 	}
 
-	infra := []string{"internal/infra/http", "internal/infra/database", "internal/infra/web", "internal/infra/handler"}
+	infra := []string{"internal/infra/database", "internal/infra/web", "internal/infra/handler"}
 
 	for _, inf := range infra {
 		err := os.MkdirAll(inf, 0755)
