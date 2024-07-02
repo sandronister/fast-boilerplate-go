@@ -5,44 +5,31 @@ import (
 	"os"
 
 	"github.com/sandronister/fast-bolierplate-go/internals/cli"
+	"github.com/sandronister/fast-bolierplate-go/pkg/utils"
 )
 
 func main() {
 	if len(os.Args) < 3 {
-		fmt.Println("Please input folder name and package name")
+		fmt.Println("To execute this program example")
+		fmt.Println("fast-go <folder-name> <module-name>")
 		return
 	}
 
 	client := cli.NewService(os.Args[1])
 
 	err := client.CreateInitialFolder()
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
+	utils.Catch(&err)
 
 	err = client.CreatePackage()
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
+	utils.Catch(&err)
 
 	err = client.CreatePrincipals()
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
+	utils.Catch(&err)
 
 	err = client.CreateInternal()
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
+	utils.Catch(&err)
 
 	err = client.CreateInfra()
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
+	utils.Catch(&err)
 
 }
