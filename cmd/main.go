@@ -23,6 +23,9 @@ func main() {
 	err = client.CreatePackage()
 	utils.Catch(&err)
 
+	err = client.GetPackage()
+	utils.Catch(&err)
+
 	err = client.CreatePrincipals()
 	utils.Catch(&err)
 
