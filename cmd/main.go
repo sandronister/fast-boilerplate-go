@@ -29,6 +29,9 @@ func main() {
 	err = client.CreatePrincipals()
 	utils.Catch(&err)
 
+	err = client.CreateConfig()
+	utils.Catch(&err)
+
 	err = client.CreateInternal()
 	utils.Catch(&err)
 
