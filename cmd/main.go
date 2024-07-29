@@ -38,4 +38,7 @@ func main() {
 	err = client.CreateInfra()
 	utils.Catch(&err)
 
+	err = client.CreateDockerFile()
+	utils.Catch(&err)
+
 }

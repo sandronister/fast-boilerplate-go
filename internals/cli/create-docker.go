@@ -6,9 +6,9 @@ import (
 	"github.com/sandronister/fast-bolierplate-go/internals/cli/files"
 )
 
-func (s *service) CreateConfig() error {
+func (s *service) CreateDockerFile() error {
 
-	file, err := os.Create("config/config.go")
+	file, err := os.Create(".Dockerfile")
 
 	if err != nil {
 		return err
@@ -16,9 +16,9 @@ func (s *service) CreateConfig() error {
 
 	defer file.Close()
 
-	configFile := files.GetConfigText()
+	textFile := files.GetDockerFile()
 
-	_, err = file.Write(configFile)
+	_, err = file.Write(textFile)
 
 	if err != nil {
 		return err
